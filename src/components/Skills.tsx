@@ -1,0 +1,78 @@
+import { useEffect, useRef } from "react";
+import { useApp } from "./AppContext";
+
+const techSkills = [
+  { name: "Node.js",        mono: "node",  color: "skill--green" },
+  { name: "React Native",   mono: "rn",    color: "skill--cyan" },
+  { name: "React",          mono: "jsx",   color: "skill--blue" },
+  { name: "TypeScript",     mono: "ts",    color: "skill--blue" },
+  { name: "JavaScript",     mono: "js",    color: "skill--yellow" },
+  { name: "CSS",            mono: "css",   color: "skill--pink" },
+  { name: "C++",            mono: "c++",   color: "skill--purple" },
+  { name: "Python",         mono: "py",    color: "skill--green" },
+  { name: "Java",           mono: "java",  color: "skill--orange" },
+  { name: "VSCode",         mono: "ide",   color: "skill--cyan" },
+];
+
+const softSkills = [
+  { pt: "Comunicação Clara",      en: "Clear Communication",   pt_d: "Técnica em linguagem simples",      en_d: "Technical in plain language" },
+  { pt: "Resolução de Problemas", en: "Problem Solving",       pt_d: "Soluções rápidas e eficientes",     en_d: "Fast and efficient solutions" },
+  { pt: "Liderança Técnica",      en: "Technical Leadership",  pt_d: "Guio equipes com clareza",          en_d: "Guide teams with clarity" },
+];
+
+export default function Skills() {
+  const { t } = useApp();
+  const ref = useRef<HTMLElement>(null);
+
+  useEffect(() => {
+    const obs = new IntersectionObserver(
+      ([e]) => { if (e.isIntersecting) ref.current?.classList.add("visible"); },
+      { threshold: 0.1 }
+    );
+    if (ref.current) obs.observe(ref.current);
+    return () => obs.disconnect();
+  }, []);
+
+  return (
+    <section id="skills" ref={ref} className="section-reveal content-section">
+      <div className="section-container">
+        <div className="section-label">
+          <span className="section-num">002</span>
+          <div className="section-line" />
+          <span className="section-tag">{t("Tecnologias", "Technologies")}</span>
+        </div>
+
+        <h2 className="section-title">
+          {t(<>Minha <span className="accent">stack</span></>, <>My <span className="accent">stack</span></>)}
+        </h2>
+
+        {/* Tech chips */}
+        <div className="skills-grid">
+          {techSkills.map((s) => (
+            <div key={s.name} className={`skill-chip ${s.color}`}>
+              <span className="skill-mono">{s.mono}</span>
+              <span className="skill-name">{s.name}</span>
+            </div>
+          ))}
+        </div>
+
+        {/* Soft skills */}
+        <div className="soft-divider">
+          <div className="soft-line" />
+          <span className="soft-label">{t("Soft Skills", "Soft Skills")}</span>
+          <div className="soft-line" />
+        </div>
+
+        <div className="soft-grid">
+          {softSkills.map((s, i) => (
+            <div key={i} className="soft-card">
+              <div className="soft-card-num">0{i + 1}</div>
+              <p className="soft-card-title">{t(s.pt, s.en)}</p>
+              <p className="soft-card-desc">{t(s.pt_d, s.en_d)}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}
