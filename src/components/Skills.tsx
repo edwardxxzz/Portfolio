@@ -2,16 +2,17 @@ import { useEffect, useRef } from "react";
 import { useApp } from "./AppContext";
 
 const techSkills = [
-  { name: "Node.js",       mono: "node",  color: "skill--green"  },
-  { name: "React Native",  mono: "rn",    color: "skill--cyan"   },
-  { name: "React",         mono: "jsx",   color: "skill--blue"   },
-  { name: "TypeScript",    mono: "ts",    color: "skill--blue"   },
-  { name: "JavaScript",    mono: "js",    color: "skill--yellow" },
-  { name: "CSS",           mono: "css",   color: "skill--pink"   },
-  { name: "C++",           mono: "c++",   color: "skill--purple" },
-  { name: "Python",        mono: "py",    color: "skill--green"  },
-  { name: "Java",          mono: "java",  color: "skill--orange" },
-  { name: "VSCode",        mono: "ide",   color: "skill--cyan"   },
+  { name: "Node.js",      mono: "node",  color: "skill--green"  },
+  { name: "React Native", mono: "rn",    color: "skill--cyan"   },
+  { name: "React",        mono: "jsx",   color: "skill--blue"   },
+  { name: "Next.js",      mono: "next",  color: "skill--purple" },
+  { name: "Vite",         mono: "vite",  color: "skill--cyan"   },
+  { name: "TypeScript",   mono: "ts",    color: "skill--blue"   },
+  { name: "JavaScript",   mono: "js",    color: "skill--yellow" },
+  { name: "CSS",          mono: "css",   color: "skill--pink"   },
+  { name: "C++",          mono: "c++",   color: "skill--purple" },
+  { name: "Java",         mono: "java",  color: "skill--orange" },
+  { name: "VSCode",       mono: "ide",   color: "skill--cyan"   },
 ];
 
 const softSkills = [
