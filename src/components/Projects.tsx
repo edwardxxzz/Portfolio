@@ -28,7 +28,7 @@ const projects = [
     en_desc: "Web version built with React — modern, industrial, responsive and ecosystem-integrated. Clean design and high performance.",
     tags: ["React", "JavaScript", "Web"],
     github: "https://github.com/edwardxxzz/Arsense-web.git",
-    site: "https://seusite.com/arsense-web", // <-- Link temporário para o site
+    site: "https://arsense-web.vercel.app", // <-- Link temporário para o site
     color: "proj--green",
     /*
       ╔═══════════════════════════════════════╗
