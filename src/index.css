@@ -22,9 +22,9 @@
 }
 
 /* ═══════════════════════════════════════
-   LIGHT THEME
+   LIGHT THEME — applied on <html> element
 ═══════════════════════════════════════ */
-.light {
+html.light {
   --bg:         #d6ede8;
   --bg2:        #c4e3dd;
   --bg3:        #b0d8d0;
@@ -334,7 +334,7 @@ body {
   );
   z-index: 1;
 }
-.light .hero-scanlines { opacity: 0.3; }
+html.light .hero-scanlines { opacity: 0.3; }
 
 /* Perspective grid floor */
 .hero-grid-floor {
@@ -1572,25 +1572,25 @@ body {
 }
 
 /* ─── Light mode text contrast boost ─── */
-.light .about-body        { color: var(--text-dim); font-weight: 450; }
-.light .about-body-dim    { color: var(--text-mute); font-weight: 400; }
-.light .project-desc      { color: var(--text-dim); }
-.light .contact-sub       { color: var(--text-dim); }
-.light .principle-desc    { color: var(--text-mute); }
-.light .soft-card-desc    { color: var(--text-mute); }
-.light .hero-subtitle     { color: var(--text-dim); font-weight: 400; }
+html.light .about-body        { color: var(--text-dim); font-weight: 450; }
+html.light .about-body-dim    { color: var(--text-mute); font-weight: 400; }
+html.light .project-desc      { color: var(--text-dim); }
+html.light .contact-sub       { color: var(--text-dim); }
+html.light .principle-desc    { color: var(--text-mute); }
+html.light .soft-card-desc    { color: var(--text-mute); }
+html.light .hero-subtitle     { color: var(--text-dim); font-weight: 400; }
 
 /* Light mode surface and border upgrades */
-.light .skill-chip   { background: rgba(150, 210, 195, 0.4); }
-.light .soft-card    { background: rgba(150, 210, 195, 0.3); border-color: rgba(0,110,90,0.2); }
-.light .project-card { background: rgba(160, 215, 200, 0.4); border-color: rgba(0,110,90,0.2); }
-.light .navbar-pills { background: rgba(160, 215, 200, 0.5); }
-.light .hero-image-frame { background: var(--bg3); }
-.light .skills-image-frame { border-color: rgba(0,110,90,0.25); }
+html.light .skill-chip   { background: rgba(150, 210, 195, 0.4); }
+html.light .soft-card    { background: rgba(150, 210, 195, 0.3); border-color: rgba(0,110,90,0.2); }
+html.light .project-card { background: rgba(160, 215, 200, 0.4); border-color: rgba(0,110,90,0.2); }
+html.light .navbar-pills { background: rgba(160, 215, 200, 0.5); }
+html.light .hero-image-frame { background: var(--bg3); }
+html.light .skills-image-frame { border-color: rgba(0,110,90,0.25); }
 
 /* Light mode star colors */
-.light .star { background: rgba(0, 80, 60, 0.4); }
-.light .hero-grid-floor {
+html.light .star { background: rgba(0, 80, 60, 0.4); }
+html.light .hero-grid-floor {
   background-image:
     linear-gradient(rgba(0,110,90,0.1) 1px, transparent 1px),
     linear-gradient(90deg, rgba(0,110,90,0.1) 1px, transparent 1px);
