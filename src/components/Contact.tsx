@@ -55,7 +55,7 @@ export default function Contact() {
 
         <div className="footer-bar">
           <p className="footer-copy">© {new Date().getFullYear()} Roberto Edward</p>
-          <p className="footer-made">{t("Feito em Manaus com ♥ e código", "Made in Manaus with ♥ and code")}</p>
+          <p className="footer-made">{t("Feito em Manaus", "Made in Manaus")}</p>
         </div>
       </div>
     </section>

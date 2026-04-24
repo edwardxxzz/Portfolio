@@ -2,26 +2,26 @@ import { useEffect, useRef } from "react";
 import { useApp } from "./AppContext";
 
 const techSkills = [
-  { name: "Node.js",        mono: "node",  color: "skill--green" },
-  { name: "React Native",   mono: "rn",    color: "skill--cyan" },
-  { name: "React",          mono: "jsx",   color: "skill--blue" },
-  { name: "TypeScript",     mono: "ts",    color: "skill--blue" },
-  { name: "JavaScript",     mono: "js",    color: "skill--yellow" },
-  { name: "CSS",            mono: "css",   color: "skill--pink" },
-  { name: "C++",            mono: "c++",   color: "skill--purple" },
-  { name: "Python",         mono: "py",    color: "skill--green" },
-  { name: "Java",           mono: "java",  color: "skill--orange" },
-  { name: "VSCode",         mono: "ide",   color: "skill--cyan" },
+  { name: "Node.js",       mono: "node",  color: "skill--green"  },
+  { name: "React Native",  mono: "rn",    color: "skill--cyan"   },
+  { name: "React",         mono: "jsx",   color: "skill--blue"   },
+  { name: "TypeScript",    mono: "ts",    color: "skill--blue"   },
+  { name: "JavaScript",    mono: "js",    color: "skill--yellow" },
+  { name: "CSS",           mono: "css",   color: "skill--pink"   },
+  { name: "C++",           mono: "c++",   color: "skill--purple" },
+  { name: "Python",        mono: "py",    color: "skill--green"  },
+  { name: "Java",          mono: "java",  color: "skill--orange" },
+  { name: "VSCode",        mono: "ide",   color: "skill--cyan"   },
 ];
 
 const softSkills = [
-  { pt: "Comunicação Clara",      en: "Clear Communication",   pt_d: "Técnica em linguagem simples",      en_d: "Technical in plain language" },
-  { pt: "Resolução de Problemas", en: "Problem Solving",       pt_d: "Soluções rápidas e eficientes",     en_d: "Fast and efficient solutions" },
-  { pt: "Liderança Técnica",      en: "Technical Leadership",  pt_d: "Guio equipes com clareza",          en_d: "Guide teams with clarity" },
+  { pt: "Comunicação Clara",      en: "Clear Communication",  pt_d: "Técnica em linguagem simples",   en_d: "Technical in plain language"   },
+  { pt: "Resolução de Problemas", en: "Problem Solving",      pt_d: "Soluções rápidas e eficientes",  en_d: "Fast and efficient solutions"  },
+  { pt: "Liderança Técnica",      en: "Technical Leadership", pt_d: "Guio equipes com clareza",       en_d: "Guide teams with clarity"      },
 ];
 
 export default function Skills() {
-  const { t } = useApp();
+  const { ts, lang } = useApp();
   const ref = useRef<HTMLElement>(null);
 
   useEffect(() => {
@@ -39,27 +39,62 @@ export default function Skills() {
         <div className="section-label">
           <span className="section-num">002</span>
           <div className="section-line" />
-          <span className="section-tag">{t("Tecnologias", "Technologies")}</span>
+          <span className="section-tag">{ts("Tecnologias", "Technologies")}</span>
         </div>
 
-        <h2 className="section-title">
-          {t(<>Minha <span className="accent">stack</span></>, <>My <span className="accent">stack</span></>)}
-        </h2>
+        {/* Two-column: chips + image */}
+        <div className="skills-layout">
+          <div className="skills-left">
+            <h2 className="section-title" style={{ marginBottom: "2rem" }}>
+              {lang === "pt"
+                ? <>Minha <span className="accent">stack</span></>
+                : <>My <span className="accent">stack</span></>}
+            </h2>
 
-        {/* Tech chips */}
-        <div className="skills-grid">
-          {techSkills.map((s) => (
-            <div key={s.name} className={`skill-chip ${s.color}`}>
-              <span className="skill-mono">{s.mono}</span>
-              <span className="skill-name">{s.name}</span>
+            <div className="skills-grid">
+              {techSkills.map((s) => (
+                <div key={s.name} className={`skill-chip ${s.color}`}>
+                  <span className="skill-mono">{s.mono}</span>
+                  <span className="skill-name">{s.name}</span>
+                </div>
+              ))}
             </div>
-          ))}
+          </div>
+
+          {/* Decorative image panel */}
+          <div className="skills-image-col">
+            <div className="skills-image-frame">
+              {/*
+                ╔═══════════════════════════════════════╗
+                ║  TROQUE a URL por uma imagem do seu   ║
+                ║  setup de trabalho ou algo que        ║
+                ║  represente sua área de atuação       ║
+                ║  Sugestão: foto do seu teclado/desk   ║
+                ╚═══════════════════════════════════════╝
+              */}
+              <img
+                src="https://images.unsplash.com/photo-1629654297299-c8506221ca97?w=700&q=80"
+                alt="Setup"
+                className="skills-img"
+              />
+              <div className="skills-img-overlay" />
+              {/* Floating stats */}
+              <div className="skills-stat skills-stat-1">
+                <span className="skills-stat-num">10+</span>
+                <span className="skills-stat-label">{ts("Tecnologias", "Technologies")}</span>
+              </div>
+              <div className="skills-stat skills-stat-2">
+                <span className="skills-stat-num">2+</span>
+                <span className="skills-stat-label">{ts("Anos codando", "Years coding")}</span>
+              </div>
+            </div>
+          </div>
         </div>
 
         {/* Soft skills */}
         <div className="soft-divider">
           <div className="soft-line" />
-          <span className="soft-label">{t("Soft Skills", "Soft Skills")}</span>
+          <span className="soft-label">Soft Skills</span>
           <div className="soft-line" />
         </div>
 
@@ -67,8 +102,8 @@ export default function Skills() {
           {softSkills.map((s, i) => (
             <div key={i} className="soft-card">
               <div className="soft-card-num">0{i + 1}</div>
-              <p className="soft-card-title">{t(s.pt, s.en)}</p>
-              <p className="soft-card-desc">{t(s.pt_d, s.en_d)}</p>
+              <p className="soft-card-title">{ts(s.pt, s.en)}</p>
+              <p className="soft-card-desc">{ts(s.pt_d, s.en_d)}</p>
             </div>
           ))}
         </div>

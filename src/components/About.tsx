@@ -54,8 +54,8 @@ export default function About() {
             </h2>
             <p className="about-body">
               {t(
-                <>Sou <strong>Roberto Edward</strong>, programador de Manaus. Estudante de Informática movido pela necessidade de construir coisas que funcionam de verdade.</>,
-                <>I'm <strong>Roberto Edward</strong>, a developer from Manaus. CS student driven by the need to build things that actually work.</>
+                <>Sou <strong>Roberto Edward</strong>, programador. Estudante de Informática movido pela necessidade de construir coisas que funcionam de verdade.</>,
+                <>I'm <strong>Roberto Edward</strong>, a developer. CS student driven by the need to build things that actually work.</>
               )}
             </p>
             <p className="about-body-dim">
