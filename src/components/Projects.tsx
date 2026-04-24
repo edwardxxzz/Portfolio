@@ -19,7 +19,7 @@ const projects = [
       ╚═══════════════════════════════════════╝
     */
     image: "https://images.unsplash.com/photo-1551650975-87deedd944c3?w=800&q=80",
-    year: "2024",
+    year: "2026",
   },
   {
     num: "002",
@@ -38,7 +38,7 @@ const projects = [
       ╚═══════════════════════════════════════╝
     */
     image: "https://images.unsplash.com/photo-1547658719-da2b51169166?w=800&q=80",
-    year: "2024",
+    year: "2026",
   },
 ];
 

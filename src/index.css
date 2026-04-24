@@ -1048,113 +1048,6 @@ body {
 }
 
 /* ═══════════════════════════════════════
-   LOADER — diagonal split reveal
-═══════════════════════════════════════ */
-.loader-root {
-  position: fixed;
-  inset: 0;
-  z-index: 9999;
-  pointer-events: all;
-  overflow: hidden;
-}
-
-/* Two panels that cover the screen */
-.loader-panel {
-  position: absolute;
-  background: var(--bg, #050a0e);
-  transition: transform 0.75s cubic-bezier(0.76, 0, 0.24, 1);
-  will-change: transform;
-}
-
-/* Top-left panel: covers top-left triangle */
-.loader-panel-tl {
-  inset: 0;
-  clip-path: polygon(0 0, 100% 0, 100% 40%, 0 100%);
-}
-
-/* Bottom-right panel */
-.loader-panel-br {
-  inset: 0;
-  clip-path: polygon(0 100%, 100% 40%, 100% 100%);
-}
-
-/* When split phase: panels fly off */
-.loader-root.split .loader-panel-tl {
-  transform: translateY(-102%);
-}
-.loader-root.split .loader-panel-br {
-  transform: translateY(102%);
-}
-
-/* The diagonal line that draws itself */
-.loader-line-wrapper {
-  position: absolute;
-  inset: 0;
-  pointer-events: none;
-  z-index: 2;
-}
-
-.loader-line {
-  position: absolute;
-  top: 40%;
-  left: -5%;
-  width: 0%;
-  height: 1px;
-  background: linear-gradient(90deg, transparent, var(--accent, #00deb4), transparent);
-  box-shadow: 0 0 12px var(--accent, #00deb4), 0 0 40px rgba(0, 222, 180, 0.3);
-  transform: rotate(-12deg);
-  transform-origin: left center;
-  transition: width 0.7s cubic-bezier(0.4, 0, 0.2, 1);
-}
-
-.loader-root.line .loader-line,
-.loader-root.split .loader-line {
-  width: 115%;
-}
-
-/* Logo centered over the line */
-.loader-logo {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  z-index: 3;
-  font-family: 'Orbitron', monospace;
-  font-size: clamp(2rem, 6vw, 4rem);
-  font-weight: 900;
-  letter-spacing: 0.2em;
-  color: var(--text, rgba(220, 245, 240, 0.88));
-  opacity: 0;
-  transition: opacity 0.4s ease;
-}
-.loader-root.line .loader-logo,
-.loader-root.split .loader-logo {
-  opacity: 1;
-}
-.loader-logo-bracket { color: var(--accent, #00deb4); font-weight: 400; }
-.loader-logo-name    { color: var(--text, #dcf5f0); }
-.loader-logo-cursor  {
-  color: var(--accent, #00deb4);
-  animation: blink 0.9s step-end infinite;
-}
-
-/* Status label */
-.loader-label {
-  position: absolute;
-  bottom: 2.5rem;
-  left: 50%;
-  transform: translateX(-50%);
-  z-index: 3;
-}
-.loader-label-text {
-  font-family: 'Share Tech Mono', monospace;
-  font-size: 0.65rem;
-  letter-spacing: 0.35em;
-  text-transform: uppercase;
-  color: var(--text-mute, rgba(120, 180, 170, 0.28));
-}
-
-/* ═══════════════════════════════════════
    HERO — two column layout
 ═══════════════════════════════════════ */
 .hero-layout {
@@ -1673,12 +1566,6 @@ body {
   .section-num     { display: none; }
 }
 
-/* ─── Loader mobile ─── */
-@media (max-width: 480px) {
-  .loader-logo { font-size: clamp(1.4rem, 8vw, 2.5rem); }
-  .loader-label { bottom: 1.5rem; }
-}
-
 /* ─── Scroll hint hide on small screens ─── */
 @media (max-width: 480px) {
   .hero-scroll-hint { display: none; }
@@ -1707,4 +1594,229 @@ body {
   background-image:
     linear-gradient(rgba(0,110,90,0.1) 1px, transparent 1px),
     linear-gradient(90deg, rgba(0,110,90,0.1) 1px, transparent 1px);
+}
+
+/* ═══════════════════════════════════════
+   LOADER v3 — valentincheval-style
+   diagonal line draws → curtain splits → logo flies
+═══════════════════════════════════════ */
+
+/* Root overlay */
+.ldr {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  overflow: hidden;
+  /* Dark background matching site bg */
+  background: #050a0e;
+}
+
+/* ── PANELS ──────────────────────────────
+   The diagonal is at ~-45° through center.
+   We clip two halves of the screen.
+   Top-left panel  → slides UP  when splitting
+   Bottom-right panel → slides DOWN when splitting
+─────────────────────────────────────────*/
+.ldr-panel {
+  position: absolute;
+  inset: 0;
+  /* Same dark bg */
+  background: #050a0e;
+  transition: transform 1s cubic-bezier(0.77, 0, 0.175, 1);
+  will-change: transform;
+}
+
+/*
+  We use clip-path polygons so the seam is exactly diagonal.
+  The diagonal goes: top-right corner → bottom-left corner (i.e., from (100%,0) to (0,100%))
+  That creates the classic Valentin split.
+*/
+.ldr-panel--top {
+  clip-path: polygon(0 0, 100% 0, 100% 0%, 0 100%);
+  /* starts filling whole screen top half */
+  clip-path: polygon(0 0, 100% 0, 100% 40%, 0 100%);
+}
+.ldr-panel--bot {
+  clip-path: polygon(100% 40%, 100% 100%, 0 100%);
+}
+
+/* When split: top panel flies UP, bottom flies DOWN */
+.ldr--split .ldr-panel--top,
+.ldr--fly   .ldr-panel--top {
+  transform: translateY(-105%);
+}
+.ldr--split .ldr-panel--bot,
+.ldr--fly   .ldr-panel--bot {
+  transform: translateY(105%);
+}
+
+/* ── DIAGONAL LINE ────────────────────────
+   Positioned along the exact diagonal seam.
+   We draw it with scaleX from 0 → 1, but
+   origin is right so it appears to draw
+   from bottom-right → top-left.
+─────────────────────────────────────────*/
+.ldr-line-track {
+  position: absolute;
+  /* Center it on the diagonal seam */
+  top: 40%;
+  left: 0;
+  width: 142%;          /* longer than viewport to cover diagonal */
+  height: 2px;
+  transform-origin: left center;
+  transform: rotate(-15deg) translateX(-5%);
+  z-index: 2;
+  pointer-events: none;
+  /* Fade out when curtain opens */
+  transition: opacity 0.35s ease;
+}
+.ldr--split .ldr-line-track,
+.ldr--fly   .ldr-line-track {
+  opacity: 0;
+}
+
+.ldr-line {
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    #00deb4 30%,
+    #00b8f5 70%,
+    transparent 100%
+  );
+  box-shadow: 0 0 16px #00deb4, 0 0 40px rgba(0,222,180,0.4);
+  transform: scaleX(0);
+  transform-origin: right center;  /* draws right → left */
+  transition: transform 0s;        /* overridden in phases */
+}
+
+/* Phase: line → animate line drawing */
+.ldr--line .ldr-line,
+.ldr--split .ldr-line,
+.ldr--fly   .ldr-line {
+  transform: scaleX(1);
+  transition: transform 0.85s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* ── LOGO ─────────────────────────────────
+   Phase idle/line: centered on diagonal
+   Phase split: still centered (visible)
+   Phase fly: flies to exact navbar [RE_] position
+─────────────────────────────────────────*/
+.ldr-logo {
+  position: fixed;
+  /* Start: centered on screen, sitting just above the diagonal line */
+  top: calc(40% - 3rem);
+  left: 50%;
+  transform: translateX(-50%);
+
+  font-family: 'Orbitron', monospace;
+  font-size: clamp(1.8rem, 5vw, 3.5rem);
+  font-weight: 900;
+  letter-spacing: 0.2em;
+  color: rgba(220, 245, 240, 0.92);
+  z-index: 10;
+
+  /* Hidden until line starts drawing */
+  opacity: 0;
+  transition:
+    opacity    0.4s ease,
+    top        0.65s cubic-bezier(0.77, 0, 0.175, 1),
+    left       0.65s cubic-bezier(0.77, 0, 0.175, 1),
+    transform  0.65s cubic-bezier(0.77, 0, 0.175, 1),
+    font-size  0.65s cubic-bezier(0.77, 0, 0.175, 1),
+    letter-spacing 0.65s ease;
+}
+
+/* Appear when line draws */
+.ldr--line  .ldr-logo,
+.ldr--split .ldr-logo {
+  opacity: 1;
+}
+
+/*
+  Fly to navbar:
+  The navbar logo [RE_] lives inside:
+    .navbar-inner → max-width 1100px, margin: 0 auto, padding: 0 2rem, height: 62px
+  So on most screens left edge = ~2rem, vertical center = 31px from top.
+  font-size in navbar: 0.85rem with letter-spacing 0.15em.
+  We target top: 19px (vertical center minus half line-height), left: 2rem.
+*/
+.ldr--fly .ldr-logo {
+  opacity: 1;
+  top: 19px;
+  left: 2rem;
+  transform: translateX(0);
+  font-size: 0.85rem;
+  letter-spacing: 0.15em;
+  font-weight: 700;
+  color: #00deb4; /* accent color matching navbar-logo */
+}
+
+.ldr-bracket { color: #00deb4; font-weight: 400; }
+.ldr-name    { color: rgba(220,245,240,0.92); }
+.ldr-cursor  {
+  color: #00deb4;
+  display: inline-block;
+  animation: blink 0.9s step-end infinite;
+}
+
+/* In fly phase, stop blinking */
+.ldr--fly .ldr-cursor {
+  animation: none;
+  opacity: 1;
+}
+
+/* ── STATUS TEXT ─────────────────────────
+   Bottom-center, very visible, in front of everything
+─────────────────────────────────────────*/
+.ldr-status {
+  position: fixed;
+  bottom: 2.5rem;
+  left: 0;
+  right: 0;
+  display: flex;
+  justify-content: center;
+  z-index: 15;                     /* highest layer */
+  opacity: 0;
+  transition: opacity 0.4s ease;
+}
+
+.ldr--line  .ldr-status,
+.ldr--split .ldr-status {
+  opacity: 1;
+}
+
+.ldr--fly .ldr-status {
+  opacity: 0;
+}
+
+.ldr-status span {
+  font-family: 'Share Tech Mono', monospace;
+  font-size: 0.75rem;
+  letter-spacing: 0.4em;
+  text-transform: uppercase;
+  color: rgba(0, 222, 180, 0.9);
+  text-shadow: 0 0 20px rgba(0, 222, 180, 0.5);
+  padding: 8px 20px;
+  border: 1px solid rgba(0, 222, 180, 0.25);
+  border-radius: 4px;
+  background: rgba(5, 10, 14, 0.6);
+  backdrop-filter: blur(8px);
+}
+
+/* Responsive: on mobile, navbar logo is still at left: 1.25rem */
+@media (max-width: 768px) {
+  .ldr--fly .ldr-logo {
+    left: 1.25rem;
+    top: 19px;
+  }
+}
+
+/* On very wide screens, account for the centered max-width container */
+@media (min-width: 1164px) { /* 1100 + 2*32px padding */
+  .ldr--fly .ldr-logo {
+    left: calc((100vw - 1100px) / 2 + 2rem);
+  }
 }
