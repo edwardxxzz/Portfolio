@@ -5,7 +5,7 @@ const projects = [
   {
     num: "001",
     title: "Arsense Mobile",
-    pt_desc: "Aplicativo mobile desenvolvido com React Native para sistema de controle e monitoramento de ambientes prediais — experiência nativa, performática e intuitiva. Interface fluida.",
+    pt_desc: "Arsense: Sistema de Controle e Monitoramento de Ambientes Uma solução completa (Mobile) desenvolvida para gerenciar, automatizar e monitorar ambientes em tempo real. Adaptável para salas de aula, escritórios corporativos e galpões industriais, o sistema oferece controle na palma da mão e análises detalhadas pelo painel mobile, focando em eficiência energética, segurança e conforto.— experiência nativa, performática e intuitiva. Interface fluida.",
     en_desc: "Mobile app built with React Native — native, performant and intuitive. Fluid interface.",
     tags: ["React Native", "TypeScript", "Mobile"],
     github: "https://github.com/edwardxxzz/Arsense.git",
@@ -24,11 +24,11 @@ const projects = [
   {
     num: "002",
     title: "Arsense Web",
-    pt_desc: "Versão web construída com React do sistema de monitoramento e controle de ambientes prediais — interface moderna, industrial, responsiva e integrada ao ecossistema. Design limpo e performático.",
+    pt_desc: "Arsense: Sistema de Controle e Monitoramento de Ambientes Uma solução completa (web) desenvolvida para gerenciar, automatizar e monitorar ambientes em tempo real. Adaptável para salas de aula, escritórios corporativos e galpões industriais, o sistema oferece controle na tela do notebook (web) e análises detalhadas pelo painel mobile, focando em eficiência energética, segurança e conforto. — interface moderna, industrial, responsiva e integrada ao ecossistema. Design limpo e performático.",
     en_desc: "Web version built with React — modern, industrial, responsive and ecosystem-integrated. Clean design and high performance.",
     tags: ["React", "JavaScript", "Web"],
     github: "https://github.com/edwardxxzz/Arsense-web.git",
-    site: "https://arsense-web.vercel.app", // <-- Link temporário para o site
+    site: "https://arsense-web.vercel.app",
     color: "proj--green",
     /*
       ╔═══════════════════════════════════════╗
