@@ -5,11 +5,11 @@ const projects = [
   {
     num: "001",
     title: "Arsense Mobile",
-    pt_desc: "Aplicativo mobile desenvolvido com React Native — experiência nativa, performática e intuitiva. Interface fluida.",
+    pt_desc: "Aplicativo mobile desenvolvido com React Native para sistema de controle e monitoramento de ambientes prediais — experiência nativa, performática e intuitiva. Interface fluida.",
     en_desc: "Mobile app built with React Native — native, performant and intuitive. Fluid interface.",
     tags: ["React Native", "TypeScript", "Mobile"],
     github: "https://github.com/edwardxxzz/Arsense.git",
-    site: "https://github.com/edwardxxzz/Arsense.git", // <-- Link temporário para o site
+    site: "https://github.com/edwardxxzz/Arsense.git", 
     color: "proj--cyan",
     /*
       ╔═══════════════════════════════════════╗
@@ -24,7 +24,7 @@ const projects = [
   {
     num: "002",
     title: "Arsense Web",
-    pt_desc: "Versão web construída com React — interface moderna, industrial, responsiva e integrada ao ecossistema. Design limpo e performático.",
+    pt_desc: "Versão web construída com React do sistema de monitoramento e controle de ambientes prediais — interface moderna, industrial, responsiva e integrada ao ecossistema. Design limpo e performático.",
     en_desc: "Web version built with React — modern, industrial, responsive and ecosystem-integrated. Clean design and high performance.",
     tags: ["React", "JavaScript", "Web"],
     github: "https://github.com/edwardxxzz/Arsense-web.git",
